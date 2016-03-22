@@ -22,9 +22,27 @@ var stats;
 init();
 animate();
 
+var particle;
+var token;
+function particle_init() {
+	particle = new Particle();
+
+	particle.login({username: user, password: pass}).then(
+	  	function(data){
+	    	console.log('API call completed on promise resolve: ', data.body.access_token);
+	    	token = data.body.access_token;
+	   },
+	  	function(err) {
+	    	console.log('API call completed on promise fail: ', err);
+	   }
+	);
+
+	//....
+
+}
 
 function init() {
-
+	particle_init();
 	// SCENE ==========
 	renderer = new THREE.WebGLRenderer(); // sets up the renderer for the browser
 	
